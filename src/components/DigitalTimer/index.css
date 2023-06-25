@@ -1,0 +1,133 @@
+/* Write your CSS here */
+* {
+  margin: 0px;
+  font-family: roboto;
+}
+.bg-container {
+  background-color: #cffcf1;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 16px 0px #bfbfbf;
+}
+.digi-timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 567px) {
+  .digi-timer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.timer-bg-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/digital-timer-elapsed-bg.png');
+  background-size: cover;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.timer-container {
+  background-color: #ffffff;
+  padding: 20px;
+  height: 120px;
+  width: 120px;
+  border-radius: 70px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.timer {
+  color: #00d9f5;
+  font-size: 28px;
+  font-weight: 700;
+}
+.status {
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 700;
+}
+.timer-control-container {
+  padding: 20px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.play-reset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+.icon-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-icon {
+  height: 22px;
+  margin: 10px;
+}
+.status-text {
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 600;
+}
+.note-text {
+  color: #1e293b;
+  font-size: 12px;
+  margin-top: 30px;
+}
+.inc-dec-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inc-dec-btn {
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 20px;
+}
+.limit-container {
+  margin: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  background-color: #00d9f5;
+  text-align: center;
+}
+.limit {
+  color: #1e293b;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 40px;
+  text-align: center;
+}
