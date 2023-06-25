@@ -6,28 +6,49 @@ import './index.css'
 class DigitalTimer extends Component {
   state = {minute: 25, second: 0, isGameStart: true}
 
+  renderTimer = () => {
+    const {isGameStart, second, minute} = this.state
+
+    const statusText = isGameStart ? 'Paused' : 'Running'
+
+    if (!isGameStart) {
+      if (second < 1) {
+        this.decreaseMinuteByOne()
+      }
+    }
+
+    return (
+      <div className="timer-bg-container">
+        <div className="timer-container">
+          <h1 className="timer">
+            {minute > 9 ? minute : `0${minute}`}:
+            {second > 9 ? second : `0${second}`}
+          </h1>
+          <p className="status">{statusText}</p>
+        </div>
+      </div>
+    )
+  }
+
   decreaseMinuteByOne = () => {
-    this.setState(prevState => ({
-      minute: prevState.minute - 1,
+    const {minute} = this.state
+
+    this.setState({
+      minute: minute - 1,
       second: 60,
-    }))
+    })
   }
 
   onPlay = () => {
     this.setState(prevState => ({isGameStart: !prevState.isGameStart}))
 
-    const {second, isGameStart} = this.state
+    const {isGameStart} = this.state
 
-    if (second === 0) {
-      this.decreaseMinuteByOne()
-    }
     if (isGameStart) {
       this.intervalId = setInterval(this.setTimer, 1000)
     } else {
       clearInterval(this.intervalId)
     }
-
-    console.log(isGameStart)
   }
 
   onReset = () => {
@@ -45,27 +66,15 @@ class DigitalTimer extends Component {
   }
 
   onIncrement = () => {
-    const {isGameStart} = this.state
-
-    if (isGameStart) {
-      this.setState(prevState => ({minute: prevState.minute + 1}))
-    } else {
-      this.setState(prevState => ({minute: prevState.minute}))
-    }
+    this.setState(prevState => ({minute: prevState.minute + 1}))
   }
 
   onDecrement = () => {
-    const {isGameStart} = this.state
-
-    if (isGameStart) {
-      this.setState(prevState => ({minute: prevState.minute - 1}))
-    } else {
-      this.setState(prevState => ({minute: prevState.minute}))
-    }
+    this.setState(prevState => ({minute: prevState.minute - 1}))
   }
 
   render() {
-    const {minute, second, isGameStart} = this.state
+    const {minute, isGameStart} = this.state
 
     const imageUrl = isGameStart
       ? 'https://assets.ccbp.in/frontend/react-js/play-icon-img.png'
@@ -73,23 +82,13 @@ class DigitalTimer extends Component {
 
     const altName = isGameStart ? 'play icon' : 'pause icon'
 
-    const statusText = isGameStart ? 'Paused' : 'Running'
-
     const startPauseText = isGameStart ? 'Start' : 'Pause'
 
     return (
       <div className="bg-container">
         <h1>Digital Timer</h1>
         <div className="digi-timer-container">
-          <div className="timer-bg-container">
-            <div className="timer-container">
-              <h1 className="timer">
-                {minute > 9 ? minute : `0${minute}`}:
-                {second > 9 ? second : `0${second}`}
-              </h1>
-              <p className="status">{statusText}</p>
-            </div>
-          </div>
+          {this.renderTimer()}
           <div className="timer-control-container">
             <div className="play-reset-container">
               <div className="icon-container">
@@ -123,6 +122,7 @@ class DigitalTimer extends Component {
                 type="button"
                 className="inc-dec-btn"
                 onClick={this.onDecrement}
+                disabled={!isGameStart}
               >
                 -
               </button>
@@ -133,6 +133,7 @@ class DigitalTimer extends Component {
                 type="button"
                 className="inc-dec-btn"
                 onClick={this.onIncrement}
+                disabled={!isGameStart}
               >
                 +
               </button>
